@@ -17,7 +17,7 @@ module.exports = (server) => {
       console.error(error);
     });
 
-    ServiceWorkerContainer.on('reply', (data) => {
+    socket.on('reply', (data) => {
       console.log('data: ', data);
     })
 
@@ -26,3 +26,5 @@ module.exports = (server) => {
     }, 3000);
   });
 };
+
+
