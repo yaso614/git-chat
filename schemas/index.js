@@ -5,7 +5,7 @@ const MONGO_URL = `mongodb+srv://${MONGO_ID}:${MONGO_PASSWORD}@cluster0-a2ure.mo
 
 module.exports = () => {
   const connect = () => {
-    (NODE_ENV !== 'production') && mongoose.set('debug', ture);
+    (NODE_ENV !== 'production') && mongoose.set('debug', true);
     mongoose.connect(MONGO_URL, {
       dbName: 'gifchat'
     }, (err) => {
