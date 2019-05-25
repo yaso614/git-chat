@@ -50,3 +50,39 @@ block content
       div.appendChild(chat);
       document.querySelector('#chat-list').appendChild(div);
     });
+    socket.on('chat', (data) => {
+      let div = document.createElement('div');
+      (data.user === '#{user}') 
+        ? div.classList.add('mine') 
+        : div.classList.add('other')
+      
+      let name = document.createElement('div');
+      name.textContent = data.chat;
+      div.appendChild(chat);
+
+      if (data.chat) {
+        let chat = document.createElement('div');
+        chat.textContent = data.chat;
+        div.appendChild(chat);
+      } else {
+        var gif = document.createElement('img');
+        gif.src = '/gif/' + data.gif;
+        div.appendChild(gif);
+      }
+      div.style.color = data.user;
+      document.querySelector('#chat-list').appendChild(div);
+    });
+    document.querySelector('#chat-form').addEventListener('submit', (e) => {
+      e.preventDefault();
+      if (e.target.chat.value) {
+        var xhr = new XMLHttpRequest();
+        xhr.onload = () => {
+          (xhr.status === 200) 
+            ? e.target.chat.value = '' 
+            : console.error(xhr.responseText);
+          xhr.open('POST', '/room/#{room._id}');
+          xhr.setRequestHeader('Content-Type', 'application/json');
+          xhr.send(JSON.stringify({ chat: this.chat.value }));
+        }
+      }
+    });
