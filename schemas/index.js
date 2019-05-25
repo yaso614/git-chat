@@ -7,7 +7,8 @@ module.exports = () => {
   const connect = () => {
     (NODE_ENV !== 'production') && mongoose.set('debug', true);
     mongoose.connect(MONGO_URL, {
-      dbName: 'gifchat'
+      dbName: 'gifchat',
+      useNewUrlParser: true
     }, (err) => {
       err && console.error("몽고디비 연결에러: ", err);
       err || console.log("몽고디비 연결성공");
