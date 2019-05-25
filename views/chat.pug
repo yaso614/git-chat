@@ -77,8 +77,8 @@ block content
       if (e.target.chat.value) {
         let xhr = new XMLHttpRequest();
         xhr.onload = function () {
-          (xhr.status === 200)
-            ? e.target.chat.value = '';
+          (xhr.status === 200) 
+            ? e.target.chat.value = '' 
             : console.error(xhr.responseText);
         };
         xhr.open('POST', '/room/#{room._id}/chat');
@@ -89,11 +89,11 @@ block content
     document.querySelector('#gif').addEventListener('change', function (e) {
       let formData = new FormData();
       let xhr = new XMLHttpRequest();
-      console.log("e.target.files: ", e.target.files);
+      console.log(e.target.files);
       formData.append('gif', e.target.files[0]);
       xhr.onload = function () {
-        (xhr.status === 200)
-          ? e.target.file = null;
+        (xhr.status === 200) 
+          ? e.target.file = null
           : console.error(xhr.responseText);
       };
       xhr.open('POST', '/room/#{room._id}/gif');
